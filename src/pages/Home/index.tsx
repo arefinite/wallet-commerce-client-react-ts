@@ -1,4 +1,12 @@
+import Products from '../Products'
+
 const Home = () => {
-  return <div className='wrapper mt-4'>Home</div>
+  return (
+    <>
+      <main className='wrapper mt-8'>
+        <Products />
+      </main>
+    </>
+  )
 }
 export default Home

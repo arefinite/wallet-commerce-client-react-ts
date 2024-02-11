@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { FormEvent } from 'react'
+import { useCookies } from 'react-cookie'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -9,6 +10,8 @@ interface IFormData {
 }
 
 const Login = () => {
+  // eslint-disable-next-line
+  const [_,setCookies] = useCookies(['access_token'])
   const navigate = useNavigate()
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -19,11 +22,13 @@ const Login = () => {
     }
 
     try {
-      await axios.post(
+      const res = await axios.post(
         `${import.meta.env.VITE_APP_API_URL}/user/login`,
         formData
       )
       toast.success('Login successful')
+      setCookies('access_token', res.data.token)
+      localStorage.setItem('userId',res.data.userId)
         navigate('/')
     } catch (err) {
       if (err instanceof AxiosError) {
