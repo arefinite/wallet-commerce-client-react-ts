@@ -21,24 +21,23 @@ const Header = () => {
             <Link to='/'>Wallet Commerce</Link>
           </h1>
         </div>
-        <nav className='hidden md:block'>
+        <nav className='hidden md:flex md:gap-4 md:items-center'>
           <ul className='flex  gap-6 text-white'>
             <li>
-              <NavLink to='/cart'>All Products</NavLink>
+              <NavLink to='/products'>All Products</NavLink>
             </li>
 
             <li>
-              <NavLink to='/cart'>Purchased List</NavLink>
+              <NavLink to='/purchased-items'>Purchased History</NavLink>
             </li>
 
             <li>
               <NavLink to='/cart'>Cart</NavLink>
             </li>
-
-            <li>
-              <NavLink to='/cart'>Logout</NavLink>
-            </li>
           </ul>
+          <button className='bg-dark text-white rounded px-3 py-1'>
+            Logout
+          </button>
         </nav>
         <nav className='md:hidden'>
           <IoMenu
@@ -54,33 +53,46 @@ const Header = () => {
           )}
 
           <div
-            className={`fixed  z-50 top-0 right-0 h-screen bg-white w-[200px] px-4 pt-4 shadow-md transition-transform duration-200 ease-in-out ${
+            className={`fixed  z-50 top-0 right-0 h-screen bg-white w-[200px] pt-4 shadow-md transition-transform duration-200 ease-in-out ${
               showMenu ? 'translate-x-0' : 'translate-x-full'
             }`}
           >
-            <div className='flex justify-end'>
-              <FaXmark
-                className='text-black cursor-pointer'
-                onClick={toggleMenu}
-              />
+            <div className='flex justify-between px-4 items-center border-b border-dotted border-lighter pb-3'>
+              <div>Welcome!</div>
+              <div className='flex justify-end'>
+                <FaXmark
+                  className='text-black cursor-pointer'
+                  onClick={toggleMenu}
+                />
+              </div>
             </div>
-            <ul className='mt-4 flex flex-col gap-2'>
-              <li>
-                <NavLink to='/cart'>All Products</NavLink>
-              </li>
+            <div className='px-4'>
+              <ul className='mt-4 flex flex-col gap-2'>
+                <li>
+                  <NavLink to='/products' onClick={() => setShowMenu(false)}>
+                    All Products
+                  </NavLink>
+                </li>
 
-              <li>
-                <NavLink to='/cart'>Purchased List</NavLink>
-              </li>
+                <li>
+                  <NavLink
+                    to='/purchased-items'
+                    onClick={() => setShowMenu(false)}
+                  >
+                    Purchased History
+                  </NavLink>
+                </li>
 
-              <li>
-                <NavLink to='/cart'>Cart</NavLink>
-              </li>
-
-              <li>
-                <NavLink to='/cart'>Logout</NavLink>
-              </li>
-            </ul>
+                <li>
+                  <NavLink to='/cart' onClick={() => setShowMenu(false)}>
+                    Cart
+                  </NavLink>
+                </li>
+              </ul>
+              <button className='bg-dark mt-2 text-white rounded px-3 py-1'>
+                Logout
+              </button>
+            </div>
           </div>
         </nav>
       </section>

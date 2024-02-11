@@ -1,10 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom'
 import RootLayout from '../layouts/RootLayout'
 import {
+  Cart,
   Checkout,
   Home,
   Login,
   NotFound,
+  Products,
   PurchasedItems,
   Register,
 } from '../pages'
@@ -35,6 +37,14 @@ export const appRouter = createBrowserRouter([
         path: 'purchased-items',
         element: <PurchasedItems />,
       },
+      {
+        path: 'products',
+        element: <Products />,
+      },
+      {
+        path: 'cart',
+        element: <Cart/>
+      }
     ],
   },
 ])
